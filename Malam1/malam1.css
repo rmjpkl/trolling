@@ -1,0 +1,153 @@
+
+body {
+        font-family: "Arial"
+}
+
+/* Table */
+table {
+        margin: auto;
+        font-family: "Arial";
+        font-size: 12px;
+
+}
+.table {
+        border-collapse: collapse;
+        font-size: 13px;
+}
+.table th, 
+.table td {
+        border-bottom: 1px solid #cccccc;
+        border-left: 1px solid #cccccc;
+        padding: 9px 21px;
+}
+.table th, 
+.table td:last-child {
+        border-right: 1px solid #cccccc;
+}
+.table td:first-child {
+        border-top: 1px solid #cccccc;
+}
+caption {
+        caption-side: top;
+        margin-bottom: 10px;
+        font-size: 16px;
+}
+
+/* Table Header */
+.table thead th {
+        background-color: #3e2ecd;
+        color: #FFFFFF;
+}
+
+/* Table Body */
+.table tbody td {
+        color: #353535;
+}
+.table tbody tr:nth-child(odd) td {
+        background-color: #b7e1fd;
+}
+.table tbody tr:hover th,
+.table tbody tr:hover td {
+        background-color: #f0f0f0;
+        transition: all .2s;
+}
+
+.text-center {
+        text-align: center;
+}
+
+/*Tabel Responsive 1*/
+.table-container {
+        overflow: auto;
+}
+
+@media screen and (max-width: 520px) {
+        /*Tabel Responsive 2*/
+        .responsive-2 {
+                width: 100%;
+        }
+        .responsive-2 thead {
+                display: none;
+        }
+        .responsive-2 td {
+                display: block;
+                text-align: right;
+                border-right: 1px solid #e1edff;
+        }
+        .responsive-2 td::before {
+                float: left;
+                text-transform: uppercase;
+                font-weight: bold;
+                content: attr(data-header);
+        }
+
+        /*Tabel Responsive 3*/
+        .responsive-3 {
+                width: 100%;
+        }
+        .responsive-3 thead th.column-primary {
+                width: 100%;
+        }
+
+        .responsive-3 thead th:not(.column-primary) {
+                display: none;
+        }
+
+        .responsive-3 td {
+                display: block;
+                width: auto;
+                text-align: right;
+                border-right: 1px solid #e1edff;
+        }
+        .responsive-3 thead th::before {
+                text-transform: uppercase;
+                font-weight: bold;
+                content: attr(data-header);
+        }
+        .responsive-3 thead th:first-child span {
+                display: none;
+        }
+        .responsive-3 td::before {
+                float: left;
+                text-transform: uppercase;
+                font-weight: bold;
+                content: attr(data-header);
+        }
+}
+              
+/* Tambahkan CSS ini di dalam tag <style> atau file CSS eksternal */
+.loadingmalam1 {
+display: none; /* Sembunyikan spinner secara default */
+position: fixed;
+z-index: 999;
+height: 2em;
+width: 2em;
+overflow: visible;
+margin: auto;
+top: 0;
+left: 0;
+bottom: 0;
+right: 0;
+}
+
+/* Animasi spinner */
+.loadingmalam1:before {
+content: '';
+display: block;
+position: fixed;
+top: 50%;
+left: 50%;
+width: 50px;
+height: 50px;
+margin-top: -25px;
+margin-left: -25px;
+border-radius: 50%;
+border: 4px solid #f3f3f3;
+border-top: 4px solid #3498db;
+animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+0% { transform: rotate(0deg); }
+100% { transform: rotate(360deg); }
+}

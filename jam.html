@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jam Digital</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #282c34;
+            color: white;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+        }
+        .clock {
+            font-size: 5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="clock" id="clock"></div>
+
+    <script>
+        function updateClock() {
+            const now = new Date();
+            let hours = now.getHours();
+            let minutes = now.getMinutes();
+
+            // Tambahkan nol di depan angka yang kurang dari 10
+            hours = hours < 10 ? '0' + hours : hours;
+            minutes = minutes < 10 ? '0' + minutes : minutes;
+
+            document.getElementById('clock').textContent = `${hours}:${minutes}`;
+        }
+
+        // Perbarui jam setiap 60 detik
+        setInterval(updateClock, 60000);
+
+        // Jalankan fungsi saat pertama kali halaman dimuat
+        updateClock();
+    </script>
+</body>
+</html>

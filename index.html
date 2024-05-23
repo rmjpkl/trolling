@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+  <style>
+    body {
+      padding: 20px;
+      background-color: #000;
+      color: #fff;
+      text-align: center;
+    }
+
+    .menu {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .menu a {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-decoration: none;
+      color: rgb(0, 0, 0);
+      width: 100px;
+      height: 100px;
+      border: none;
+      border-radius: 15px;
+      font-size: 14px;
+    }
+
+    .menu i {
+      font-size: 24px; /* Perbesar ukuran ikon */
+    }
+
+    @media (min-width: 768px) {
+      .menu {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    footer {
+      margin-top: auto;
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      padding: 10px 0;
+    }
+
+    .clock {
+            font-size: 3rem;
+        }
+    .paragraf {
+      font-size: 24px; /* Perbesar ukuran font tanggal */
+    }
+  </style>
+</head>
+
+<body>
+  <h3>E-Trolling</h3>
+  <h4>Lapas Kelas IIB Batang</h4>
+  <p  class="paragraf" id="tanggal"></p>
+  <script src="js/tanggal.js"></script>
+  <div class="clock" id="clock"></div>
+  <br />
+  <div class="menu">
+    <a href="Pagi/pagi.html" class="btn btn-primary">
+      <i class="fa fa-cloud"></i>
+      <span>PAGI</span>
+    </a>
+    <a href="Siang/Siang.html" class="btn btn-warning">
+      <i class="fa fa-sun"></i>
+      <span>SIANG</span>
+    </a>
+    <a href="Malam1/Malam1.html" class="btn btn-dark">
+      <i class="fa fa-moon"></i>
+      <span>MALAM</span>
+    </a>
+    <a href="print.html" class="btn btn-primary">
+      <i class="fa fa-file"></i>
+      <span>LAPORAN</span>
+    </a>
+
+    <a href="s2gs://" class="btn btn-primary">
+      <i class="fas fa-rocket"></i>
+      <span>S2GS</span>
+    </a>
+    <a href="https://play.google.com/store/apps/details?id=com.s2gs.app">
+      <i class="fas fa-download"></i>
+      <span>Install S2GS</span>
+    </a>
+    
+  </div>
+
+
+
+  <script src="js/jam.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+<footer>
+  Create By Tim Humas Lapas Batang <i class="fas far fa-copyright"></i>
+</footer </html>
