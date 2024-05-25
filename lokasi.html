@@ -1,0 +1,171 @@
+<HTML lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>LAPORAN | ASIKADIMBA</title>
+                <!-- Dependensi Icon dan font -->
+                <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" rel="stylesheet" />
+        
+                <!-- Menghubungkan CSS Bootstrap -->
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+                
+                <!-- Menghubungkan Bootstrap Bundle (JS) -->
+                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+                <!-- Menghubungkan jQuery -->
+                <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+
+                <!-- Menghubungkan Bootstrap Datepicker untuk tanggal -->
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/locales/bootstrap-datepicker.id.min.js"></script>
+
+
+        <!-- script untuk map -->
+        <script>
+            function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition);
+            } else { 
+                alert("Geolocation tidak didukung oleh browser ini.");
+            }
+            }
+            
+            function showPosition(position) {
+                var latitude = position.coords.latitude;
+                var longitude = position.coords.longitude;            
+                var iframe = document.getElementById('mapframe');
+                var googleMapLink = "https://www.google.com/maps?q=" + latitude + "," + longitude;
+                document.getElementById('dimana').value = googleMapLink;
+                //view maps
+                iframe.src = "https://maps.google.com/maps?q=" + latitude + "," + longitude + "&z=15&output=embed";
+            }
+            </script>
+    </head>
+    
+    <div class="container-sm">
+        <body onload="getLocation()">
+            <h1>LAPORAN | 911 </h1>
+            <form>
+                
+                <fieldset class="form-group border p-3">
+                    
+                    <div class="mb-3">
+                        <label class="form-label">Judul</label>
+                        <input type="text" class="form-control" id="judul"  required="" placeholder="Nama Kegiatan/kejadian">
+                    </div>
+
+            <div class="mb-3">
+                    <label for="tanggal" class="form-label">Pilih Tanggal</label>
+                    <input type="text" class="form-control" id="tanggal" name="tanggal" placeholder="klik unutk memilih tanggal">
+                    <script>
+                        $(document).ready(function(){
+                        $('#tanggal').datepicker({
+                            format: 'DD , dd M yyyy',
+                            language: 'id', 
+                            autoclose: true
+                        }); 
+                        $('#tanggal').datepicker('setDate', new Date())                      
+                        });
+                    </script>
+                </div>
+
+                
+                
+                
+                <div class="mb-3">
+                    <label class="form-label">Lokasi</label>
+                    <input type="text" class="form-control" id="dimana" readonly hidden>
+                    <iframe id="mapframe" class="form-control"></iframe>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="bagaimana" class="form-label">Keterangan</label>
+                    <textarea class="form-control" id="bagaimanaAwal" required placeholder="Keterangan Kejadian" style="width: 100%; height:200px;" contenteditable="true"></textarea>
+                    <script>
+                        // Fungsi untuk mengganti "enter" dengan "%0A"
+                        function replaceEnterWithPercentZeroA() {
+                            const textarea = document.getElementById("bagaimanaAwal");
+                            const newValue = textarea.value.replace(/\n/g, "%0A");
+                            // menambahkan nilai ke textarea yanga asli bukan tampilan user
+                            document.getElementById('bagaimana').value = newValue;
+                        }
+                        
+                        // Panggil fungsi di bawah ini ketika pengguna selesai mengetik    
+                        document.getElementById("bagaimanaAwal").addEventListener("blur", replaceEnterWithPercentZeroA);
+                        </script>
+                </div>
+
+                <div class="mb-3">
+                    <!-- teks asli yang akan di kirim ke function api whatsapp ditampung disini -->
+                    <textarea class="form-control" id="bagaimana" hidden ></textarea>
+                </div>
+
+                
+                <div class="mb-3">
+                    <label class="form-label">Nama Anda</label>
+                    <input type="text" class="form-control" id="namaPelaporan"  required="" placeholder="Masukan Nama Anda">
+                </div>
+                <a class="btn btn-primary btn-lg btn-block w-100 send_form" id="send_form" href="javascript:void(0);" type="submit" title="Kirim ke WhatsApp">
+                    <i class="fa fa-paper-plane"></i> Kirim
+                </a>
+                
+                </fieldset>
+        
+
+    
+            </form>
+            <br><br>
+    </div>
+    
+    <script type="text/javascript">
+        //<![CDATA[
+        $(document).on('click', '.send_form', function () {
+            var input_blanter = document.getElementById('judul');
+            /* Whatsapp Settings */
+            var walink = 'https://web.whatsapp.com/send',
+                phone = '6285876155521',
+                text_yes = 'Terkirim.',
+                text_no = 'Isi semua Formulir lalu klik Send.';
+    
+            /* Smartphone Support */
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                var walink = 'whatsapp://send';
+            }
+    
+            if ("" != input_blanter.value) {
+    
+                /* Call Input Form */
+                var input_judul=$("#judul").val(),
+                input_tanggal=$("#tanggal ").val(),
+                input_namaPelaporan=$("#namaPelaporan").val(),
+                input_dimana=$("#dimana").val(),
+                input_bagaimana=$("#bagaimana").val();
+                
+    
+                /* Final Whatsapp URL */
+                var blanter_whatsapp = walink + '?phone=' + phone + '&text=' + '%0A%0A' +
+                    '*Izin melaporakan*' + '%0A' +
+                    '```Kegiatan :' + input_judul + '%0A' +
+                    'Waktu    :' + input_tanggal + '%0A' +
+                    'Lokasi   :' + '%0A' +
+                    input_dimana + '%0A' +
+                    'Pengirim :' + input_namaPelaporan + '%0A' +
+                    'Uraian   :```' + '%0A' +
+                    '----------------------------------' + '%0A'+
+                    input_bagaimana + '%0A' +
+                    '----------------------------------' + '%0A'+
+                    '' + '%0A';
+    
+                /* Whatsapp Window Open */
+                window.open(blanter_whatsapp, '_blank');
+                document.getElementById("text-info").innerHTML = '<span class="yes">' + text_yes + '</span>';
+            } else {
+                document.getElementById("text-info").innerHTML = '<span class="no">' + text_no + '</span>';
+            }
+        });
+    //]]>
+    </script>
+    
+    </body>
+    
+    </HTML>
